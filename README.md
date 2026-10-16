@@ -4,7 +4,7 @@ Portfolio of Allain James O. Ybañez, a B.S. Computer Science student majoring i
 
 It shows eight projects in computer vision, web, mobile and IoT, including the AEye exam-proctoring thesis and the hackathon app Save the Fuel. It also lists skills, awards, a downloadable CV and contact details.
 
-Live site: https://allainjamesybanez23.github.io
+Live site: https://allainjamesybanez23.github.io/AJ_Ybanez_Portfolio/
 
 The layout follows the Sawad Framer portfolio style (dark page, sticky profile card, big two-tone headings, floating section nav) in the site's green and gold colors. Every project is shown open, so nothing needs to be clicked to read it.
 
