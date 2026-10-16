@@ -79,13 +79,8 @@ main{width:100%;max-width:860px;justify-self:center;padding:clamp(40px,6vw,88px)
 @media (max-height:820px) and (min-width:1001px){.photo{max-width:220px}.status{margin-bottom:12px}.card-name{margin-top:22px}}
 .status{display:inline-flex;align-items:center;gap:8px;margin:0 0 18px;padding:6px 12px;border-radius:999px;background:rgba(255,255,255,.1);color:var(--on-green);font-size:.85rem;font-weight:600}
 .status::before{content:"";width:8px;height:8px;border-radius:50%;background:var(--gold);box-shadow:0 0 0 4px rgba(227,174,27,.25)}
-.portrait{position:relative;display:block;width:100%;aspect-ratio:1/1;padding:0;margin:0;border:0;border-radius:20px;overflow:hidden;background:#fff;cursor:pointer}
-.portrait img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;transition:opacity .45s ease,transform .6s ease}
-.portrait .alt{opacity:0;transform:scale(1.04)}
-.portrait.is-alt .alt,.portrait:focus-visible .alt{opacity:1;transform:none}
-.portrait.is-alt .main,.portrait:focus-visible .main{opacity:0}
-@media (hover:hover){.portrait:hover .alt{opacity:1;transform:none}.portrait:hover .main{opacity:0}}
-@media (prefers-reduced-motion:reduce){.portrait img{transition:none}}
+.portrait{position:relative;display:block;width:100%;aspect-ratio:1/1;padding:0;margin:0;border:0;border-radius:20px;overflow:hidden;background:#fff}
+.portrait img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
 .badge{position:absolute;right:16px;bottom:-18px;width:44px;height:44px;border-radius:50%;background:var(--gold);color:var(--ink);display:grid;place-items:center;font-size:1.35rem;box-shadow:0 0 0 6px var(--green-deep)}
 .photo{position:relative}
 .card-name{margin:28px 0 0;font-size:1.75rem;font-weight:800;letter-spacing:-.03em;line-height:1.1}
@@ -308,10 +303,9 @@ footer a{color:var(--muted);display:inline-flex;align-items:center;min-height:44
     <div class="card reveal">
       <p class="status">Open for OJT · January 2027</p>
       <div class="photo">
-        <button class="portrait" type="button" aria-pressed="false" aria-label="Photo of Allain. Press to switch to his graduation photo.">
-          <img class="main" src="images/portrait.jpg" width="400" height="400" alt="Allain James Ybañez in a suit and tie">
-          <img class="alt" src="images/portrait_grad.jpg" width="288" height="288" alt="Allain in a graduation cap and gown, holding a basketball">
-        </button>
+        <div class="portrait">
+          <img src="images/portrait.jpg" width="400" height="400" alt="Allain James Ybañez in a suit and tie">
+        </div>
         <span class="badge" aria-hidden="true"><i class="ph ph-code"></i></span>
       </div>
       <h1 class="card-name">Allain James O. Ybañez</h1>
@@ -625,15 +619,6 @@ document.documentElement.classList.add('js');
     a.addEventListener('click',function(e){ e.preventDefault(); big.src=a.href; big.alt=a.dataset.view; cap.textContent=a.dataset.view; d.showModal(); });
   });
   d.addEventListener('click',function(e){ if(e.target===d||e.target===big||e.target.closest('.viewer-close')) d.close(); });
-})();
-
-// Portrait swaps to the graduation photo on tap
-(function(){
-  var b=document.querySelector('.portrait'); if(!b) return;
-  b.addEventListener('click',function(){
-    var on=b.classList.toggle('is-alt'); b.setAttribute('aria-pressed',on?'true':'false');
-  });
-  b.addEventListener('pointerleave',function(e){ if(e.pointerType!=='mouse') return; b.classList.remove('is-alt'); b.setAttribute('aria-pressed','false'); b.blur(); });
 })();
 
 // Copy email
