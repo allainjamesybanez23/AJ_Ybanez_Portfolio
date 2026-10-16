@@ -1,0 +1,622 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="color-scheme" content="light">
+<title>Allain James Ybañez · Portfolio</title>
+<meta name="description" content="Projects by Allain James O. Ybañez, a Computer Science (AI/Web) student at the University of San Jose-Recoletos, Cebu.">
+<meta property="og:title" content="Allain James Ybañez · Portfolio">
+<meta property="og:description" content="Computer vision, web and mobile projects built for real problems in Cebu.">
+<meta property="og:type" content="website">
+<meta property="og:image" content="images/portrait.jpg">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%230A4A26'/%3E%3Ctext x='32' y='42' text-anchor='middle' font-family='Arial,sans-serif' font-weight='700' font-size='28' fill='%23E3AE1B'%3EAY%3C/text%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Schibsted+Grotesk:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://unpkg.com/@phosphor-icons/web@2.1.1/src/regular/style.css">
+<style>
+:root{
+  --paper:#FFFFFF;
+  --surface:#FFFFFF;
+  --ink:#14261B;
+  --muted:#55665B;
+  --rule:#D5DED7;
+  --green:#0B6B34;
+  --green-deep:#0A4A26;
+  --gold:#E3AE1B;
+  --gold-wash:#FBF1D2;
+  --panel:#F3F6F3;
+  --on-hero:#FFFFFF;
+  --on-hero-muted:#BFD4C6;
+  --shot-border:#C8D3CB;
+  --on-green:#FFFFFF;
+  --measure:64ch;
+  --wrap:1240px;
+  --gutter:clamp(16px,4vw,40px);
+}
+*,*::before,*::after{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%;scroll-behavior:smooth}
+@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
+body{
+  margin:0;background:var(--paper);color:var(--ink);
+  font-family:"Schibsted Grotesk",system-ui,-apple-system,"Segoe UI",sans-serif;
+  font-size:1.0625rem;line-height:1.6;font-feature-settings:"kern","liga";
+  text-rendering:optimizeLegibility;
+}
+img{max-width:100%;height:auto;display:block}
+a{color:var(--green);text-decoration-thickness:1px;text-underline-offset:.2em}
+a:hover{text-decoration-thickness:2px}
+:focus-visible{outline:3px solid var(--green);outline-offset:3px;border-radius:2px}
+.skip{position:absolute;left:-9999px;top:8px;background:var(--ink);color:var(--paper);padding:8px 14px;z-index:10}
+.skip:focus{left:var(--gutter)}
+.wrap{max-width:var(--wrap);margin:0 auto;padding:0 var(--gutter)}
+
+/* Top bar */
+.topbar{background:var(--green-deep);border-bottom:1px solid rgba(255,255,255,.12);position:sticky;top:0;z-index:20}
+.topbar .wrap{display:flex;align-items:center;justify-content:space-between;gap:16px;min-height:64px}
+.mark{font-weight:700;color:var(--on-hero);text-decoration:none;letter-spacing:-.01em}
+.topbar nav ul{list-style:none;margin:0;padding:0;display:flex;gap:clamp(14px,3vw,28px)}
+.topbar nav a{color:var(--on-hero-muted);text-decoration:none;font-weight:500;font-size:.95rem}
+.topbar nav a:hover{color:var(--gold)}
+.topbar :focus-visible,.hero :focus-visible{outline-color:var(--gold)}
+
+/* Hero */
+.hero{
+  min-height:calc(100svh - 65px);display:flex;flex-direction:column;justify-content:center;
+  padding:clamp(40px,7vw,88px) 0 0;color:var(--on-hero);border-bottom:6px solid var(--gold);
+  background:radial-gradient(60vw 60vw at 82% 38%,#0F5C31 0%,rgba(15,92,49,0) 60%),var(--green-deep);
+}
+.hero > .wrap{width:100%}
+.landing{display:grid;grid-template-columns:minmax(0,7fr) minmax(0,5fr);gap:clamp(32px,6vw,72px);align-items:center}
+.landing .lede{margin-top:clamp(20px,3vw,32px)}
+.portrait-wrap{justify-self:center;text-align:center}
+.portrait{
+  position:relative;display:block;width:clamp(220px,28vw,340px);aspect-ratio:1/1;padding:0;margin:0 auto;
+  border:0;background:#0A3D20;cursor:pointer;border-radius:18px;
+  outline:2px solid var(--gold);outline-offset:10px;overflow:hidden;
+}
+.portrait img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;transition:opacity .45s ease,transform .6s ease}
+.portrait .alt{opacity:0;transform:scale(1.04);object-position:50% 50%}
+.portrait .main{object-position:50% 50%}
+.portrait:focus-visible .alt,.portrait.is-alt .alt{opacity:1;transform:scale(1)}
+.portrait:focus-visible .main,.portrait.is-alt .main{opacity:0;transform:scale(1.04)}
+@media (hover:hover){.portrait:hover .alt{opacity:1;transform:scale(1)}.portrait:hover .main{opacity:0;transform:scale(1.04)}}
+.portrait:focus-visible{outline:3px solid var(--gold);outline-offset:10px}
+@media (prefers-reduced-motion:reduce){.portrait img{transition:none}}
+.facts-strip{margin:clamp(40px,6vw,72px) 0 0;display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:20px;border-top:1px solid rgba(255,255,255,.18);padding:22px 0 30px}
+.facts-strip div{display:flex;flex-direction:column;gap:4px}
+.facts-strip dt{color:var(--on-hero-muted);font-size:.9rem}
+.facts-strip dd{margin:0;font-weight:600;font-size:1rem}
+.hero h1{
+  margin:0;font-weight:800;letter-spacing:-.035em;line-height:.95;
+  font-size:clamp(2.9rem,9vw,6.75rem);max-width:12ch;
+}
+.lede{margin:0;font-size:clamp(1.2rem,2.1vw,1.45rem);line-height:1.5;max-width:34ch;font-weight:400}
+.lede-sub{margin:var(--s2,16px) 0 0;max-width:40ch;color:var(--on-hero-muted);font-size:clamp(1rem,1.5vw,1.125rem);line-height:1.5}
+.hero-links{display:flex;flex-wrap:wrap;gap:12px;margin-top:32px}
+.btn{
+  display:inline-flex;align-items:center;gap:8px;padding:11px 18px;border-radius:999px;
+  font-weight:600;font-size:.98rem;text-decoration:none;border:1.5px solid var(--ink);color:var(--ink);
+}
+.btn.primary{background:var(--green);border-color:var(--green);color:var(--on-green)}
+.btn:hover{text-decoration:none;background:var(--green-deep);border-color:var(--green-deep);color:#fff}
+.hero .btn{border-color:rgba(255,255,255,.7);color:var(--on-hero)}
+.hero .btn.primary{background:var(--gold);border-color:var(--gold);color:#14261B}
+.hero .btn:hover{background:var(--on-hero);border-color:var(--on-hero);color:#0A4A26}
+.btn svg{width:18px;height:18px;flex:none}
+
+/* Section headings */
+.section{padding:clamp(64px,9vw,112px) 0}
+.section-head{margin-bottom:clamp(24px,3vw,36px);display:flex;flex-wrap:wrap;align-items:flex-end;justify-content:space-between;gap:12px 40px}
+.section-head > div{max-width:60ch}
+.section-head h2{margin:0;font-size:clamp(2rem,4vw,2.75rem);font-weight:800;letter-spacing:-.025em;line-height:1.05;padding-bottom:14px;background:linear-gradient(var(--gold),var(--gold)) left bottom/56px 4px no-repeat}
+.section-head p{margin:0;color:var(--muted);font-size:1.05rem;max-width:46ch}
+
+/* Project jump list */
+.jump ul{list-style:none;margin:0 0 clamp(28px,3vw,40px);padding:0;display:flex;flex-wrap:wrap;gap:8px}
+.jump a{display:inline-block;padding:7px 14px;border-radius:999px;border:1px solid var(--rule);background:var(--surface);color:var(--ink);text-decoration:none;font-weight:500;font-size:.92rem}
+.jump a:hover{border-color:var(--green);color:var(--green)}
+
+/* Projects */
+.slide{position:relative;isolation:isolate;display:flex;align-items:center;scroll-margin-top:65px;border-top:1px solid var(--rule)}
+.slide::before{content:"";position:absolute;inset:0;z-index:-1;pointer-events:none;background-image:radial-gradient(rgba(11,107,52,.24) 1.3px,transparent 1.6px);background-size:22px 22px;-webkit-mask-image:radial-gradient(ellipse 75% 70% at 50% 50%,#000 30%,rgba(0,0,0,.35) 100%);mask-image:radial-gradient(ellipse 75% 70% at 50% 50%,#000 30%,rgba(0,0,0,.35) 100%)}
+#skills::before{content:"";position:absolute;inset:0;z-index:-1;pointer-events:none;background-image:radial-gradient(rgba(11,107,52,.2) 1.3px,transparent 1.6px);background-size:22px 22px;-webkit-mask-image:radial-gradient(ellipse 75% 70% at 50% 50%,#000 30%,rgba(0,0,0,.35) 100%);mask-image:radial-gradient(ellipse 75% 70% at 50% 50%,#000 30%,rgba(0,0,0,.35) 100%)}
+.slide-grid{display:grid;grid-template-columns:minmax(0,1fr);align-items:center;width:100%}
+.media{height:min(56svh,480px);border-radius:24px;background:linear-gradient(160deg,#F7FAF7 0%,#E6EEE8 100%);border:1px solid var(--rule);display:flex;align-items:center;justify-content:center;overflow:hidden}
+.media img,.media video{display:block;width:auto;height:auto;max-width:100%;max-height:100%;border-radius:10px;box-shadow:0 1px 2px rgba(20,38,27,.10),0 14px 32px -16px rgba(20,38,27,.45);background:#fff}
+.media-stack{flex-direction:column}
+.proj-body{min-width:0}
+.proj-body h3{margin:0;font-size:clamp(2rem,3.4vw,2.9rem);font-weight:800;letter-spacing:-.03em;line-height:1.05;color:var(--ink)}
+.proj-body .kind{color:var(--green);font-weight:600;font-size:1.1rem}
+.pills{list-style:none;padding:0;display:flex;flex-wrap:wrap}
+.pills li{border-radius:999px;background:var(--surface);border:1px solid var(--rule);color:var(--muted);font-weight:500}
+.award{display:block;padding:9px 14px;border-left:4px solid var(--gold);background:var(--gold-wash);border-radius:0 8px 8px 0;font-weight:600;font-size:.95rem;line-height:1.4}
+.desc,.mine{max-width:var(--measure)}
+.mine{margin:var(--s2) 0 0;padding:10px 14px;border-left:4px solid var(--green);background:var(--panel);border-radius:0 8px 8px 0}
+.proj-body h4{font-size:.95rem;font-weight:700;color:var(--ink)}
+.points{margin:0;padding-left:1.15em;max-width:var(--measure)}
+.points li{padding-left:.2em}
+.points li::marker{color:var(--gold)}
+.points li b{font-weight:700}
+.proj-foot{display:flex;flex-direction:column;align-items:flex-start}
+.code{display:inline-flex;align-items:center;font-weight:600;color:var(--green);text-decoration:none;border:1.5px solid var(--green);border-radius:999px}
+.code svg{width:18px;height:18px}
+.code:hover{background:var(--green);color:#fff}
+.hero{position:relative;isolation:isolate}
+.hero::before{content:"";position:absolute;inset:0;z-index:-1;pointer-events:none;background-image:radial-gradient(rgba(255,255,255,.16) 1.3px,transparent 1.5px);background-size:22px 22px;-webkit-mask-image:linear-gradient(115deg,transparent 0%,#000 45%,#000 100%);mask-image:linear-gradient(115deg,transparent 0%,#000 45%,#000 100%)}
+@media print{.slide::before,.hero::before,#skills::before{display:none}}
+
+/* Photo viewer */
+.media img{cursor:zoom-in}
+.viewer{border:0;padding:0;margin:auto;background:transparent;max-width:min(96vw,1400px);max-height:94vh;overflow:visible}
+.viewer::backdrop{background:rgba(8,24,15,.88)}
+.viewer img{display:block;max-width:min(96vw,1400px);max-height:86vh;width:auto;height:auto;border-radius:10px;background:#fff;cursor:zoom-out}
+.viewer p{margin:10px 0 0;color:#E6EEE8;font-size:.92rem;text-align:center;max-width:70ch;margin-inline:auto}
+.viewer-close{position:fixed;top:16px;right:16px;width:44px;height:44px;border-radius:999px;border:0;background:#fff;color:#14261B;font-size:1.6rem;line-height:1;cursor:pointer}
+.viewer-close:focus-visible{outline:3px solid var(--gold);outline-offset:3px}
+
+/* Skills & awards */
+.tags{display:flex;flex-wrap:wrap;gap:8px;list-style:none;padding:0;margin:0}
+.tags li{padding:4px 12px;border:1px solid var(--rule);border-radius:999px;background:var(--surface);font-size:.9rem;font-weight:500}
+.skill-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr))}
+.panel{background:var(--surface);border:1px solid var(--rule);border-radius:18px}
+.familiar{grid-column:1/-1;display:flex;flex-wrap:wrap;align-items:center}
+.familiar p{margin:0;color:var(--muted)}
+.panel h3{font-size:1.05rem;font-weight:700}
+.sub{font-size:1.25rem;font-weight:700}
+.award-grid{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(2,minmax(0,1fr))}
+.award-grid li{background:var(--surface);border:1px solid var(--rule);border-top:4px solid var(--gold);border-radius:14px;display:flex;flex-direction:column}
+.award-grid strong{font-size:1.1rem}
+.award-grid span{color:var(--muted);font-size:.95rem}
+.award-grid time{color:var(--green);font-weight:600;font-size:.9rem}
+
+/* Contact */
+.contact{background:var(--green-deep);color:var(--on-hero)}
+.contact h2{font-size:clamp(2rem,5vw,3.5rem);font-weight:800;letter-spacing:-.03em;line-height:1.02;max-width:16ch}
+.contact p{max-width:52ch;color:var(--on-hero-muted);font-size:1.05rem}
+.contact .btn{border-color:rgba(255,255,255,.7);color:var(--on-hero)}
+.contact .btn.primary{background:var(--gold);border-color:var(--gold);color:#14261B}
+.contact .btn:hover{background:var(--on-hero);border-color:var(--on-hero);color:#0A4A26}
+.contact :focus-visible{outline-color:var(--gold)}
+footer{color:var(--on-hero-muted);font-size:.9rem;background:var(--green-deep);border-top:1px solid rgba(255,255,255,.14)}
+
+/* ===== Spacing system: one scale used everywhere =====
+   8 = tightly related lines, 16 = items inside a group, 24 = between groups,
+   32 = before actions, 48/64 = between sections. */
+:root{--s1:8px;--s2:16px;--s3:24px;--s4:32px;--s5:48px;--s6:clamp(64px,8vw,96px);--grid-gap:clamp(32px,5vw,64px)}
+.section,.contact{padding:var(--s6) 0}
+.jump{margin-bottom:var(--s3)}
+.slide{padding:var(--s5) 0}
+.section-head{margin:0 0 var(--s4);gap:var(--s2) var(--s5)}
+.section-head h2{padding-bottom:var(--s2)}
+.jump ul{margin:0;gap:var(--s1)}
+.landing{gap:var(--grid-gap)}
+.landing .lede,.hero .lede{margin-top:var(--s3)}
+.hero .hero-links,.contact .hero-links{margin-top:var(--s4);gap:var(--s2)}
+.facts-strip{margin-top:var(--s6);padding:var(--s3) 0;gap:var(--s3) var(--s5);grid-template-columns:repeat(5,auto);justify-content:space-between}
+.facts-strip div{gap:var(--s1)}
+.slide-grid{gap:var(--s4)}
+.media{padding:var(--s3);gap:var(--s2)}
+.media-stack img{max-height:calc(50% - var(--s1))}
+.media-pair img{max-width:calc(50% - var(--s1))}
+.proj-body .kind{margin:var(--s1) 0 0}
+.pills{margin:var(--s2) 0 0;gap:var(--s1)}
+.award{margin:var(--s2) 0 0}
+.desc{margin:var(--s3) 0 0}
+.proj-body h4{margin:var(--s3) 0 var(--s1)}
+.points li{margin:0 0 var(--s1)}
+.points li:last-child{margin-bottom:0}
+.proj-foot{margin-top:var(--s3);gap:var(--s2)}
+.pills li,.tags li,.jump a{padding:6px 14px;font-size:.9rem;line-height:1.4}
+.btn,.code{padding:11px 20px;font-size:.98rem;line-height:1.3;gap:var(--s1)}
+.skill-grid,.award-grid{gap:var(--s2)}
+.panel,.award-grid li{padding:var(--s3)}
+.panel h3{margin:0 0 var(--s2)}
+.familiar{gap:var(--s1) var(--s2)}
+.familiar h3{margin:0}
+.sub{margin:var(--s5) 0 var(--s3)}
+.award-grid li{gap:var(--s1)}
+.contact h2{margin:0}
+.contact p{margin:var(--s2) 0 0}
+footer{padding:var(--s3) 0}
+
+/* Profile card: sticks beside projects and skills once you scroll past the hero */
+.with-side{display:grid;grid-template-columns:300px minmax(0,1fr);gap:clamp(32px,4vw,56px);align-items:start}
+.side{position:sticky;top:120px;margin-top:var(--s6)}
+.card{position:relative;background:var(--panel);border:1px solid var(--rule);border-radius:24px;padding:24px 24px 28px;text-align:center}
+.side::before,.side::after{content:"";position:absolute;z-index:-1;border:2px dashed var(--gold);border-radius:50%;pointer-events:none}
+.side::before{width:140px;height:140px;top:-46px;left:44px}
+.side::after{width:150px;height:150px;bottom:40px;left:-36px}
+.photo{position:relative}
+.photo img{width:100%;aspect-ratio:1/1;object-fit:cover;border-radius:16px;background:var(--green-deep)}
+.badge{position:absolute;left:-41px;bottom:20px;width:34px;height:34px;border-radius:50%;background:var(--gold);color:var(--ink);display:grid;place-items:center;box-shadow:0 0 0 5px var(--panel)}
+.card-name{margin:20px 0 0;font-size:1.6rem;font-weight:800;letter-spacing:-.025em;line-height:1.1}
+.card .bio{margin:10px auto 0;max-width:26ch;color:var(--muted);font-size:.98rem;line-height:1.5}
+@media (prefers-reduced-motion:no-preference){
+  @supports (animation-timeline:view()){
+    .side{animation:rise linear both;animation-timeline:view();animation-range:entry 0% entry 30%}
+  }
+}
+@keyframes rise{from{opacity:0;transform:translateY(32px)}}
+
+/* Dashed gold circles, echoing the profile card */
+:root{--arc:rgba(227,174,27,.45)}
+.hero{overflow:hidden}
+.hero::after,.portrait-wrap::before,.slide::after,#skills::after,.contact::before,.contact::after{
+  content:"";position:absolute;z-index:-1;aspect-ratio:1/1;border:2px dashed var(--arc);border-radius:50%;pointer-events:none;
+}
+.hero::after{width:150px;right:3%;top:6%;--arc:rgba(227,174,27,.35)}
+.portrait-wrap{position:relative;isolation:isolate}
+.portrait-wrap::before{width:62%;left:-26%;bottom:-24%;--arc:rgba(227,174,27,.5)}
+.slide::after{width:130px;right:0;bottom:var(--s5)}
+.slide:nth-of-type(even)::after{width:90px;right:48px}
+#skills{position:relative;isolation:isolate}
+#skills::after{width:110px;right:0;top:20px}
+.contact{position:relative;isolation:isolate;overflow:hidden}
+.contact::before{width:clamp(160px,20vw,260px);right:6%;top:50%;transform:translateY(-50%);--arc:rgba(227,174,27,.4)}
+.contact::after{width:80px;left:55%;top:var(--s4);--arc:rgba(227,174,27,.3)}
+@media (max-width:860px){.contact::before,.contact::after,.slide::after{display:none}}
+@media print{.hero::after,.portrait-wrap::before,.slide::after,#skills::after,.contact::before,.contact::after{display:none}}
+
+@media (max-width:960px){
+  .with-side{grid-template-columns:1fr}
+  .side{display:none}
+}
+@media (max-width:860px){
+  :root{--grid-gap:var(--s3)}
+  .slide{padding:var(--s4) 0}
+  .section,.contact{padding:var(--s5) 0}
+  .facts-strip{margin-top:var(--s5)}
+  .landing{grid-template-columns:1fr}
+  .portrait-wrap{order:-1}
+  .facts-strip{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .hero{min-height:0}
+  .media{height:auto;aspect-ratio:4/3}
+  .skill-grid{grid-template-columns:1fr}
+}
+@media (max-width:560px){
+  .topbar nav{display:none}
+  .award-grid{grid-template-columns:1fr}
+}
+@media print{
+  .topbar nav,.hero-links,.skip,.side{display:none}
+  .slide{break-inside:avoid}
+}
+</style>
+</head>
+<body>
+<a class="skip" href="#projects">Skip to projects</a>
+
+<header class="topbar">
+  <div class="wrap">
+    <a class="mark" href="#top">Allain James Ybañez</a>
+    <nav aria-label="Sections">
+      <ul>
+        <li><a href="#projects">Projects</a></li>
+        <li><a href="#skills">Skills</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ul>
+    </nav>
+  </div>
+</header>
+
+<main id="top">
+  <section class="hero">
+    <div class="wrap">
+      <div class="landing">
+        <div>
+          <h1>Allain James O. Ybañez</h1>
+          <p class="lede">I like working on software for problems I can see around me, from exam halls and jeepney routes to flood-prone barangays in Cebu.</p>
+          <p class="lede-sub">Willing to learn and adapt to new tools, environments, and challenges.</p>
+          <div class="hero-links">
+            <a class="btn primary" href="#projects">See projects</a>
+            <a class="btn" href="https://github.com/allainjamesybanez23">
+              <svg viewBox="0 0 24 24" aria-hidden="true" fill="currentColor"><path d="M12 .5a11.5 11.5 0 0 0-3.64 22.41c.58.1.79-.25.79-.56v-2c-3.2.7-3.88-1.37-3.88-1.37-.52-1.33-1.28-1.69-1.28-1.69-1.05-.72.08-.7.08-.7 1.16.08 1.77 1.19 1.77 1.19 1.03 1.77 2.7 1.26 3.36.96.1-.75.4-1.26.73-1.55-2.56-.29-5.25-1.28-5.25-5.69 0-1.26.45-2.29 1.19-3.1-.12-.29-.52-1.46.11-3.05 0 0 .97-.31 3.17 1.18a11 11 0 0 1 5.77 0c2.2-1.49 3.17-1.18 3.17-1.18.63 1.59.23 2.76.11 3.05.74.81 1.19 1.84 1.19 3.1 0 4.42-2.7 5.4-5.26 5.68.41.36.78 1.06.78 2.14v3.17c0 .31.21.67.8.56A11.5 11.5 0 0 0 12 .5Z"/></svg>
+              GitHub
+            </a>
+            <a class="btn" href="Ybanez_CV.pdf" download><i class="ph ph-download-simple" aria-hidden="true"></i>Download CV</a>
+          </div>
+        </div>
+        <div class="portrait-wrap">
+          <button class="portrait" type="button" aria-pressed="false" aria-label="Photo of Allain. Press to switch to his graduation photo.">
+            <img class="main" src="images/portrait.jpg" width="400" height="400" alt="Allain James Ybañez in a suit and tie">
+            <img class="alt" src="images/portrait_grad.jpg" width="288" height="288" alt="Allain in a graduation cap and gown, holding a basketball">
+          </button>
+        </div>
+      </div>
+      <dl class="facts-strip">
+        <div><dt>OJT availability</dt><dd>January 2027, 324 hours</dd></div>
+        <div><dt>Studying</dt><dd>B.S. Computer Science, AI/Web</dd></div>
+        <div><dt>School</dt><dd>University of San Jose-Recoletos</dd></div>
+        <div><dt>Expected to graduate</dt><dd>June 2027</dd></div>
+        <div><dt>Also do</dt><dd>Graphic design and video editing</dd></div>
+      </dl>
+    </div>
+  </section>
+
+  <div class="wrap with-side">
+    <aside class="side" aria-label="Profile">
+      <div class="card">
+        <div class="photo">
+          <img src="images/portrait_grad.jpg" width="288" height="288" alt="Allain in a graduation cap and gown, holding a basketball" loading="lazy">
+          <span class="badge" aria-hidden="true"><i class="ph ph-code"></i></span>
+        </div>
+        <p class="card-name">Allain James O. Ybañez</p>
+        <p class="bio">Computer Science (AI/Web) student at the University of San Jose-Recoletos, Cebu.</p>
+      </div>
+    </aside>
+
+    <div class="content">
+      <section class="section" id="projects" aria-labelledby="projects-h" style="padding-bottom:0">
+        <div class="section-head">
+          <h2 id="projects-h">Projects</h2>
+          <p>Team and personal projects, with what each one does and what it was built with.</p>
+        </div>
+        <nav class="jump" aria-label="Jump to a project"><ul><li><a href="#p-aeye">AEye</a></li><li><a href="#p-hair">Haircut Policy Detector</a></li><li><a href="#p-rfid">RFID Door Lock</a></li><li><a href="#p-stf">Save the Fuel</a></li><li><a href="#p-flood">FloodGuard</a></li><li><a href="#p-afit">aFit</a></li><li><a href="#p-qrx">QRx</a></li><li><a href="#p-food">FoodJS</a></li></ul></nav>
+
+        <article class="slide" id="p-aeye" aria-labelledby="p-aeye-h">
+          <div class="slide-grid">
+            <div class="media media-stack">
+              <img src="images/aeye_live.jpg" width="700" height="289" loading="lazy" alt="AEye live tracking: the front camera flags off-screen gaze while the side camera tracks posture and hands">
+              <img src="images/aeye_proctor.jpg" width="700" height="376" loading="lazy" alt="AEye proctor view listing cheating alerts beside a side-camera frame with a detected phone">
+            </div>
+            <div class="proj-body">
+              <h3 id="p-aeye-h">AEye</h3>
+              <p class="kind">Undergraduate thesis</p>
+              <ul class="pills" aria-label="Project details"><li>Team of 3</li><li>July 2026 - present</li></ul>
+              <p class="desc">A Windows desktop app that proctors computer-based exams. It reads eye gaze, head pose and posture from two cameras, compares them to each student's own baseline, and sends real-time alerts to a human proctor, who makes the final call.</p>
+              <h4>My part</h4>
+              <ul class="points">
+                <li><b>Side-camera module.</b> Worked on upper-body posture and hand tracking with MediaPipe, and phone and extra-person detection with YOLOv8.</li>
+                <li><b>Per-student calibration.</b> Worked on mapping each student's screen area with a convex hull (Graham scan).</li>
+                <li><b>Evidence logging.</b> Worked on logging each confirmed incident with start and end times and screenshots, plus a live gaze and head-pose graph.</li>
+              </ul>
+              <div class="proj-foot">
+                <ul class="tags" aria-label="Built with"><li>Python</li><li>PySide6</li><li>OpenCV</li><li>MediaPipe</li><li>YOLOv8</li><li>scikit-learn</li><li>MySQL</li></ul>
+              </div>
+            </div>
+          </div>
+        </article>
+
+        <article class="slide" id="p-hair" aria-labelledby="p-hair-h">
+          <div class="slide-grid">
+            <div class="media media-stack">
+              <img src="images/haircut_compliant.jpg" width="1280" height="686" loading="lazy" alt="Haircut Policy Detector showing a Compliant status with the hair mask on">
+              <img src="images/haircut_violation.jpg" width="1280" height="684" loading="lazy" alt="Haircut Policy Detector flagging a Violation when the hair crosses the line">
+            </div>
+            <div class="proj-body">
+              <h3 id="p-hair-h">Haircut Policy Detector</h3>
+              <p class="kind">Real-time computer vision</p>
+              <ul class="pills" aria-label="Project details"><li>Personal project</li><li>May 2026</li></ul>
+              <p class="desc">A real-time camera app that checks students' haircuts against the USJ-R grooming policy, the kind of check a guard does at the school gate.</p>
+              <h4>What it does</h4>
+              <ul class="points">
+                <li>Detects faces and eyes with OpenCV Haar cascades, and classifies gender with an SVM trained on HOG features from a dataset I collected, so the right rules are applied.</li>
+                <li>Segments the hair region to flag bangs that fall too low on the forehead and hair that is too tall, with a separate side-profile check.</li>
+                <li>A Tkinter dashboard shows the live feed, a Compliant or Violation status, the gender confidence and a debug mask of the detected hair.</li>
+              </ul>
+              <div class="proj-foot">
+                <ul class="tags" aria-label="Built with"><li>Python</li><li>OpenCV</li><li>scikit-learn</li><li>NumPy</li><li>Tkinter</li></ul>
+                <a class="code" href="https://github.com/allainjamesybanez23/Haircut_Policy_Detector"><i class="ph ph-github-logo" aria-hidden="true"></i>View code on GitHub</a>
+              </div>
+            </div>
+          </div>
+        </article>
+
+        <article class="slide" id="p-rfid" aria-labelledby="p-rfid-h">
+          <div class="slide-grid">
+            <div class="media media-single">
+              <video controls muted playsinline preload="metadata" poster="images/rfid_door.jpg" width="576" height="1024" aria-label="RFID door lock demo video, 36 seconds">
+                <source src="videos/rfid_door_lock_demo.mp4" type="video/mp4">
+              </video>
+            </div>
+            <div class="proj-body">
+              <h3 id="p-rfid-h">RFID Door Lock</h3>
+              <p class="kind">IoT door lock</p>
+              <ul class="pills" aria-label="Project details"><li>Team project</li><li>2024</li></ul>
+              <p class="desc">A door lock that opens with a registered RFID card or from a web page, built on an ESP32 and installed on a real door.</p>
+              <p class="mine"><b>My part:</b> Worked on the code, set up the MQTT connection between the ESP32 and the web page, and configured the door hardware.</p>
+              <h4>What it does</h4>
+              <ul class="points">
+                <li>An ESP32 reads RFID cards, drives the lock and shows the status on an LCD.</li>
+                <li>A Node.js and Express web page locks or unlocks the door and registers new cards, talking to the ESP32 over MQTT.</li>
+                <li>The page shows live lock events and invalid-card alerts through Server-Sent Events.</li>
+              </ul>
+              <div class="proj-foot">
+                <ul class="tags" aria-label="Built with"><li>ESP32</li><li>Node.js</li><li>Express</li><li>MQTT</li></ul>
+                <a class="code" href="https://github.com/allainjamesybanez23/rfid-door-lock"><i class="ph ph-github-logo" aria-hidden="true"></i>View code on GitHub</a>
+              </div>
+            </div>
+          </div>
+        </article>
+
+        <article class="slide" id="p-stf" aria-labelledby="p-stf-h">
+          <div class="slide-grid">
+            <div class="media media-single">
+              <img src="images/stf_hud.jpg" width="400" height="703" loading="lazy" alt="Save the Fuel map screen showing traffic zones and the savings counter">
+            </div>
+            <div class="proj-body">
+              <h3 id="p-stf-h">Save the Fuel</h3>
+              <p class="kind">Hackathon app</p>
+              <ul class="pills" aria-label="Project details"><li>Team project</li><li>April 2026</li></ul>
+              <p class="award">2nd Runner-Up, USJ-R School of Computer Studies Annual Hackathon</p>
+              <p class="desc">An offline-first app that helps Cebu jeepney drivers save fuel by catching engine idling in traffic.</p>
+              <h4>What it does</h4>
+              <ul class="points">
+                <li>Detects idling from live GPS speed and the phone's motion sensor inside mapped Cebu traffic hotspots.</li>
+                <li>Color-coded screen glows and Cebuano voice cues ("Cut engine, manoy!") tell drivers when to turn off the engine.</li>
+                <li>Tracks pesos saved, compares fuel prices by station, and projects take-home pay, all stored offline.</li>
+              </ul>
+              <div class="proj-foot">
+                <ul class="tags" aria-label="Built with"><li>Flutter</li><li>Dart</li><li>SQLite</li><li>OpenStreetMap</li></ul>
+                <a class="code" href="https://github.com/allainjamesybanez23/STF"><i class="ph ph-github-logo" aria-hidden="true"></i>View code on GitHub</a>
+              </div>
+            </div>
+          </div>
+        </article>
+
+        <article class="slide" id="p-flood" aria-labelledby="p-flood-h">
+          <div class="slide-grid">
+            <div class="media media-stack">
+              <img src="images/floodguard.jpg" width="480" height="259" loading="lazy" alt="FloodGuard map of Cebu City barangays colored by flood-risk level">
+              <img src="images/floodguard_table.jpg" width="1344" height="281" loading="lazy" alt="FloodGuard barangay table with risk index, elevation and NDVI">
+            </div>
+            <div class="proj-body">
+              <h3 id="p-flood-h">FloodGuard</h3>
+              <p class="kind">Flood-risk dashboard</p>
+              <ul class="pills" aria-label="Project details"><li>Team project</li><li>June 2026</li></ul>
+              <p class="desc">A flood-risk dashboard for Cebu City's 80 barangays, scored from satellite vegetation (NDVI) data and elevation.</p>
+              <p class="mine"><b>My part:</b> Built the barangay map and heatmap, the sortable barangay table with its year slider and search, the dashboard redesign, and the report database on the Django side.</p>
+              <h4>What it does</h4>
+              <ul class="points">
+                <li>An interactive map and searchable table rank every barangay by risk, with a 2010-2026 year slider.</li>
+                <li>An English/Cebuano NLP classifier tags community flood reports by disaster type, severity and barangay.</li>
+              </ul>
+              <div class="proj-foot">
+                <ul class="tags" aria-label="Built with"><li>Python</li><li>Django REST Framework</li><li>Angular/Ionic</li><li>Leaflet</li></ul>
+                <a class="code" href="https://github.com/AdrianVill20/FloodGuard"><i class="ph ph-github-logo" aria-hidden="true"></i>View code on GitHub</a>
+              </div>
+            </div>
+          </div>
+        </article>
+
+        <article class="slide" id="p-afit" aria-labelledby="p-afit-h">
+          <div class="slide-grid">
+            <div class="media media-pair">
+              <img src="images/afit_home.jpg" width="503" height="895" loading="lazy" alt="aFit start screen with a Start workout button">
+              <img src="images/afit_rest.jpg" width="487" height="902" loading="lazy" alt="aFit rest timer counting down between sets">
+            </div>
+            <div class="proj-body">
+              <h3 id="p-afit-h">aFit</h3>
+              <p class="kind">Workout tracker</p>
+              <ul class="pills" aria-label="Project details"><li>Personal project</li><li>June 2026</li></ul>
+              <p class="desc">A workout tracker for strength and basketball training that keeps a training plan on track even when days are missed.</p>
+              <h4>What it does</h4>
+              <ul class="points">
+                <li>Flexible training cycles only move forward when a workout is completed, so a missed day doesn't break the plan.</li>
+                <li>Set logging pre-fills the last weight, reps and rest time, with a library of default and custom exercises with tags.</li>
+              </ul>
+              <div class="proj-foot">
+                <ul class="tags" aria-label="Built with"><li>Django REST Framework</li><li>React</li><li>PostgreSQL</li></ul>
+                <a class="code" href="https://github.com/allainjamesybanez23/aFit"><i class="ph ph-github-logo" aria-hidden="true"></i>View code on GitHub</a>
+              </div>
+            </div>
+          </div>
+        </article>
+
+        <article class="slide" id="p-qrx" aria-labelledby="p-qrx-h">
+          <div class="slide-grid">
+            <div class="media media-single">
+              <img src="images/qrx.jpg" width="440" height="428" loading="lazy" alt="QRx medicine input screen and a Safe verification result">
+            </div>
+            <div class="proj-body">
+              <h3 id="p-qrx-h">QRx</h3>
+              <p class="kind">Medicine authenticity verifier</p>
+              <ul class="pills" aria-label="Project details"><li>Team project</li><li>December 2025</li></ul>
+              <p class="desc">A mobile app that checks whether a medicine is genuine from its QR code or entered details.</p>
+              <p class="mine"><b>My part:</b> Worked on camera QR scanning and the voice read-out of results.</p>
+              <h4>What it does</h4>
+              <ul class="points">
+                <li>Matches each medicine against a database and flags it as Safe, Counterfeit, Expired or Not FDA Approved.</li>
+                <li>The PHP API uses prepared statements to block SQL injection. The system was designed with UML and class diagrams.</li>
+              </ul>
+              <div class="proj-foot">
+                <ul class="tags" aria-label="Built with"><li>Flutter</li><li>Dart</li><li>PHP</li><li>MySQL</li></ul>
+                <a class="code" href="https://github.com/yssaarong/SE-QRx"><i class="ph ph-github-logo" aria-hidden="true"></i>View code on GitHub</a>
+              </div>
+            </div>
+          </div>
+        </article>
+
+        <article class="slide" id="p-food" aria-labelledby="p-food-h">
+          <div class="slide-grid">
+            <div class="media media-stack">
+              <img src="images/food_menu.jpg" width="1600" height="760" loading="lazy" alt="FoodJS customer menu with a search bar, category filters and food cards with prices">
+              <img src="images/food_admin.jpg" width="1600" height="753" loading="lazy" alt="FoodOps admin dashboard with order totals, revenue, top-selling items and recent orders">
+            </div>
+            <div class="proj-body">
+              <h3 id="p-food-h">FoodJS</h3>
+              <p class="kind">Simple Food Ordering System</p>
+              <ul class="pills" aria-label="Project details"><li>Team project</li><li>May 2026</li></ul>
+              <p class="desc">A web app where customers browse a menu, order food and track their order, with an admin side for staff.</p>
+              <p class="mine"><b>My part:</b> Built the backend: the Express API, Google OAuth and JWT login, password hashing, and order status updates.</p>
+              <h4>What it does</h4>
+              <ul class="points">
+                <li>Secure login with Google OAuth 2.0, JWT sessions and bcrypt password hashing.</li>
+                <li>Live order status (Pending, Preparing, Ready, Delivered) and an admin panel for menu items and orders.</li>
+              </ul>
+              <div class="proj-foot">
+                <ul class="tags" aria-label="Built with"><li>React</li><li>Node.js</li><li>Express</li></ul>
+                <a class="code" href="https://github.com/JeanKathlee/Simple-Food-Ordering-System"><i class="ph ph-github-logo" aria-hidden="true"></i>View code on GitHub</a>
+              </div>
+            </div>
+          </div>
+        </article>
+      </section>
+
+      <section class="section" id="skills" style="border-top:1px solid var(--rule)" aria-labelledby="skills-h">
+        <div class="section-head">
+          <h2 id="skills-h">Skills and awards</h2>
+          <p>Tools I use with confidence, and recognition from hackathons and certifications.</p>
+        </div>
+        <div class="skill-grid">
+          <div class="panel"><h3>Languages</h3><ul class="tags"><li>Python</li><li>JavaScript</li></ul></div>
+          <div class="panel"><h3>Frameworks and libraries</h3><ul class="tags"><li>OpenCV</li><li>MediaPipe</li><li>YOLOv8</li><li>scikit-learn</li><li>Pandas</li></ul></div>
+          <div class="panel"><h3>Tools</h3><ul class="tags"><li>Git and GitHub</li><li>Jupyter</li><li>Google Colab</li><li>Figma</li><li>Adobe Suite</li><li>Canva</li></ul></div>
+          <div class="panel familiar"><h3>Familiar with</h3><p>Machine learning fundamentals at a coursework level, from our Machine Learning course. I have also used Dart and Flutter, Node.js and Express, PHP, React, MySQL, MQTT and the ESP32 in team projects.</p></div>
+        </div>
+        <h3 class="sub">Awards and certifications</h3>
+        <ul class="award-grid">
+          <li><strong>2nd Runner-Up</strong><span>USJ-R School of Computer Studies Annual Hackathon, with my team</span><time datetime="2026">2026</time></li>
+          <li><strong>Top 25</strong><span>CEB-I Hackathon, with my team</span><time datetime="2026">2026</time></li>
+          <li><strong>TOPCIT Level 3</strong><span>Test of Practical Competency in ICT</span><time datetime="2026-07">July 2026</time></li>
+          <li><strong>TESDA Advanced AI Upskilling Training</strong><span>Attended at the University of San Jose-Recoletos</span></li>
+        </ul>
+      </section>
+    </div>
+  </div>
+
+  <section class="contact" id="contact" aria-labelledby="contact-h">
+    <div class="wrap">
+      <h2 id="contact-h">Get in touch</h2>
+      <p>I'm looking for an OJT practicum starting January 2027, with 324 hours required. You can reach me by email.</p>
+      <div class="hero-links">
+        <a class="btn primary" href="mailto:allainjames.ybanez.23@usjr.edu.ph">allainjames.ybanez.23@usjr.edu.ph</a>
+        <a class="btn" href="Ybanez_CV.pdf" download><i class="ph ph-download-simple" aria-hidden="true"></i>Download CV</a>
+        <a class="btn" href="https://github.com/allainjamesybanez23">github.com/allainjamesybanez23</a>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap">© 2026 Allain James O. Ybañez</div>
+</footer>
+<dialog class="viewer" aria-label="Full-size photo">
+  <button class="viewer-close" type="button" aria-label="Close photo">&times;</button>
+  <img src="" alt="">
+  <p></p>
+</dialog>
+<script>
+(function(){
+  var d=document.querySelector('.viewer'); if(!d||!d.showModal) return;
+  var big=d.querySelector('img'), cap=d.querySelector('p');
+  document.querySelectorAll('.media img').forEach(function(img){
+    img.tabIndex=0; img.setAttribute('role','button');
+    function open(){ big.src=img.currentSrc||img.src; big.alt=img.alt; cap.textContent=img.alt; d.showModal(); }
+    img.addEventListener('click',open);
+    img.addEventListener('keydown',function(e){ if(e.key==='Enter'||e.key===' '){ e.preventDefault(); open(); } });
+  });
+  d.addEventListener('click',function(e){ if(e.target===d||e.target===big||e.target.classList.contains('viewer-close')) d.close(); });
+})();
+(function(){
+  var b=document.querySelector('.portrait'); if(!b) return;
+  b.addEventListener('click',function(){
+    var on=b.classList.toggle('is-alt'); b.setAttribute('aria-pressed',on?'true':'false');
+  });
+  b.addEventListener('pointerleave',function(e){ if(e.pointerType!=='mouse') return; b.classList.remove('is-alt'); b.setAttribute('aria-pressed','false'); b.blur(); });
+})();
+</script>
+</body>
+</html>
