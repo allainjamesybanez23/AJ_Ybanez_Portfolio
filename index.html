@@ -225,6 +225,11 @@ footer a{color:var(--muted);display:inline-flex;align-items:center;min-height:44
 .dock a::after{content:attr(data-label);position:absolute;bottom:calc(100% + 12px);left:50%;transform:translate(-50%,4px);padding:5px 10px;border-radius:8px;background:var(--ink);color:var(--on-green);font-size:.8rem;font-weight:600;white-space:nowrap;opacity:0;pointer-events:none;transition:opacity .15s,transform .15s}
 @media (hover:hover){.dock a:hover::after{opacity:1;transform:translate(-50%,0)}}
 .dock a:focus-visible::after{opacity:1;transform:translate(-50%,0)}
+/* Confirmation after an email link copies the address */
+.toast{position:fixed;left:50%;bottom:96px;z-index:60;margin:0;max-width:calc(100% - 32px);padding:11px 18px;border-radius:999px;background:var(--green-deep);color:var(--on-green);font-size:.92rem;font-weight:600;box-shadow:0 14px 28px -14px rgba(10,74,38,.6);opacity:0;transform:translate(-50%,8px);pointer-events:none;transition:opacity .2s,transform .25s var(--ease,ease);overflow-wrap:anywhere;text-align:center}
+.toast.show{opacity:1;transform:translate(-50%,0)}
+@media (min-width:1001px){.toast{left:calc(var(--side) + (100% - var(--side)) / 2);bottom:28px}}
+@media (prefers-reduced-motion:reduce){.toast{transition:none;transform:translate(-50%,0)}}
 /* Wide screens: the dock stands upright at the right edge, centered top to bottom, labels open to its left */
 @media (min-width:1001px){
   main{padding-right:max(clamp(20px,5vw,64px),104px)}
@@ -636,6 +641,22 @@ document.documentElement.classList.add('js');
     navigator.clipboard.writeText(b.dataset.copy).then(function(){
       label.textContent='Copied'; setTimeout(function(){ label.textContent='Copy email'; },1800);
     },function(){ location.href='mailto:'+b.dataset.copy; });
+  });
+})();
+
+// Email links also copy the address: mailto opens nothing on machines without an email app
+(function(){
+  if(!navigator.clipboard) return;
+  var toast=document.createElement('p'); toast.className='toast'; toast.setAttribute('role','status'); document.body.appendChild(toast);
+  var t;
+  document.querySelectorAll('a[href^="mailto:"]').forEach(function(a){
+    a.addEventListener('click',function(){
+      var addr=a.getAttribute('href').slice(7);
+      navigator.clipboard.writeText(addr).then(function(){
+        toast.textContent='Email copied: '+addr; toast.classList.add('show');
+        clearTimeout(t); t=setTimeout(function(){ toast.classList.remove('show'); },2600);
+      },function(){});
+    });
   });
 })();
 
