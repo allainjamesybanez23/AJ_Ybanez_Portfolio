@@ -225,6 +225,10 @@ footer a{color:var(--muted);display:inline-flex;align-items:center;min-height:44
 .dock a::after{content:attr(data-label);position:absolute;bottom:calc(100% + 12px);left:50%;transform:translate(-50%,4px);padding:5px 10px;border-radius:8px;background:var(--ink);color:var(--on-green);font-size:.8rem;font-weight:600;white-space:nowrap;opacity:0;pointer-events:none;transition:opacity .15s,transform .15s}
 @media (hover:hover){.dock a:hover::after{opacity:1;transform:translate(-50%,0)}}
 .dock a:focus-visible::after{opacity:1;transform:translate(-50%,0)}
+/* Hover label for icon-only buttons and clickable screenshots */
+.tip{position:fixed;z-index:70;margin:0;padding:5px 10px;border-radius:8px;background:var(--ink);color:var(--on-green);font-size:.8rem;font-weight:600;white-space:nowrap;pointer-events:none;opacity:0;transform:translateY(4px);transition:opacity .15s,transform .15s}
+.tip.show{opacity:1;transform:none}
+@media (prefers-reduced-motion:reduce){.tip{transition:none;transform:none}}
 /* Confirmation after an email link copies the address */
 .toast{position:fixed;left:50%;bottom:96px;z-index:60;margin:0;max-width:calc(100% - 32px);padding:11px 18px;border-radius:999px;background:var(--green-deep);color:var(--on-green);font-size:.92rem;font-weight:600;box-shadow:0 14px 28px -14px rgba(10,74,38,.6);opacity:0;transform:translate(-50%,8px);pointer-events:none;transition:opacity .2s,transform .25s var(--ease,ease);overflow-wrap:anywhere;text-align:center}
 .toast.show{opacity:1;transform:translate(-50%,0)}
@@ -313,9 +317,9 @@ footer a{color:var(--muted);display:inline-flex;align-items:center;min-height:44
       <h1 class="card-name">Allain James O. Ybañez</h1>
       <p class="bio">BSCS student majoring in AI and Web Development at the University of San Jose-Recoletos, Cebu.</p>
       <ul class="socials">
-        <li><a href="https://github.com/allainjamesybanez23" aria-label="GitHub"><i class="ph ph-github-logo" aria-hidden="true"></i></a></li>
-        <li><a href="mailto:allainjames.ybanez.23@usjr.edu.ph" aria-label="Email"><i class="ph ph-envelope-simple" aria-hidden="true"></i></a></li>
-        <li><a href="Ybanez_CV.pdf" download aria-label="Download CV"><i class="ph ph-file-arrow-down" aria-hidden="true"></i></a></li>
+        <li><a href="https://github.com/allainjamesybanez23" aria-label="GitHub" data-tip="View my GitHub"><i class="ph ph-github-logo" aria-hidden="true"></i></a></li>
+        <li><a href="mailto:allainjames.ybanez.23@usjr.edu.ph" aria-label="Email" data-tip="Copy Email Address"><i class="ph ph-envelope-simple" aria-hidden="true"></i></a></li>
+        <li><a href="Ybanez_CV.pdf" download aria-label="Download CV" data-tip="Download my CV (PDF)"><i class="ph ph-file-arrow-down" aria-hidden="true"></i></a></li>
       </ul>
     </div>
   </aside>
@@ -642,6 +646,29 @@ document.documentElement.classList.add('js');
       label.textContent='Copied'; setTimeout(function(){ label.textContent='Copy email'; },1800);
     },function(){ location.href='mailto:'+b.dataset.copy; });
   });
+})();
+
+// Hover label: icon-only buttons and clickable screenshots say what they do (mouse hover or keyboard focus)
+(function(){
+  document.querySelectorAll('.stage .shot').forEach(function(i){ i.dataset.tip='Click to enlarge'; });
+  var els=document.querySelectorAll('[data-tip]'); if(!els.length) return;
+  var tip=document.createElement('p'); tip.className='tip'; tip.setAttribute('aria-hidden','true'); document.body.appendChild(tip);
+  var hover=window.matchMedia&&matchMedia('(hover:hover)').matches;
+  function show(el){
+    tip.textContent=el.dataset.tip; tip.classList.add('show');
+    var r=el.getBoundingClientRect(), w=tip.offsetWidth, h=tip.offsetHeight;
+    var x=Math.min(Math.max(8,r.left+r.width/2-w/2),innerWidth-w-8);
+    var y=r.top-h-10; if(y<8) y=r.bottom+10;
+    tip.style.left=x+'px'; tip.style.top=y+'px';
+  }
+  function hide(){ tip.classList.remove('show'); }
+  els.forEach(function(el){
+    if(hover){ el.addEventListener('mouseenter',function(){ show(el); }); el.addEventListener('mouseleave',hide); }
+    el.addEventListener('focus',function(){ if(el.matches(':focus-visible')) show(el); });
+    el.addEventListener('blur',hide);
+    el.addEventListener('click',hide);
+  });
+  addEventListener('scroll',hide,{passive:true});
 })();
 
 // Email links also copy the address: mailto opens nothing on machines without an email app
