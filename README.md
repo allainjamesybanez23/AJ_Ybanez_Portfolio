@@ -1,6 +1,6 @@
 # Allain James O. Ybañez · Portfolio
 
-Portfolio of Allain James O. Ybañez, a B.S. Computer Science student majoring in AI and Web Development at the University of San Jose-Recoletos, Cebu, looking for an OJT practicum starting January 2027 (324 hours).
+Portfolio of Allain James O. Ybañez, a B.S. Computer Science student majoring in AI and Web Development at the University of San Jose-Recoletos, Cebu, looking for an OJT practicum starting January 2027.
 
 It shows eight projects in computer vision, web, mobile and IoT, including the AEye exam-proctoring thesis and the hackathon app Save the Fuel. It also lists skills, awards, a downloadable CV and contact details.
 

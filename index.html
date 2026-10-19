@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="color-scheme" content="light">
 <title>Allain James Ybañez · OJT Portfolio</title>
-<meta name="description" content="OJT portfolio of Allain James O. Ybañez, a B.S. Computer Science student majoring in AI and Web Development at the University of San Jose-Recoletos, Cebu, available for a 324-hour practicum starting January 2027.">
+<meta name="description" content="OJT portfolio of Allain James O. Ybañez, a B.S. Computer Science student majoring in AI and Web Development at the University of San Jose-Recoletos, Cebu, available for an OJT practicum starting January 2027.">
 <meta property="og:title" content="Allain James Ybañez · OJT Portfolio">
 <meta property="og:description" content="Machine learning, computer vision, web and mobile projects built for real problems in Cebu.">
 <meta property="og:type" content="website">
@@ -181,10 +181,9 @@ section{padding:0 0 clamp(80px,10vw,128px)}
 .points b{color:var(--text)}
 
 /* ===== List rows (education, awards) ===== */
-.rows{list-style:none;margin:36px 0 0;padding:0;border-top:1px solid var(--line)}
-.rows li{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:6px 24px;padding:24px 0;border-bottom:1px solid var(--line)}
+.rows{list-style:none;margin:36px -16px 0;padding:0;border-top:1px solid var(--line)}
+.rows li{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:6px 24px;padding:24px 16px;border-bottom:1px solid var(--line);border-radius:16px;transition:background .25s,border-color .25s}
 .rows strong{font-size:clamp(1.15rem,1.8vw,1.4rem);font-weight:700;letter-spacing:-.02em;line-height:1.3;transition:color .2s}
-.rows li:hover strong{color:var(--green)}
 .rows span{grid-column:1;color:var(--muted);font-size:.98rem}
 .cert{grid-column:1;justify-self:start;display:inline-flex;align-items:center;gap:8px;margin-top:8px;min-height:44px;padding:7px 16px;border-radius:999px;border:1.5px solid var(--green);color:var(--green);font-weight:600;font-size:.88rem;text-decoration:none;transition:background .2s,color .2s}
 .cert:hover{background:var(--green);color:var(--on-green)}
@@ -192,11 +191,24 @@ section{padding:0 0 clamp(80px,10vw,128px)}
 
 /* ===== Skills ===== */
 .tools{list-style:none;margin:36px 0 0;padding:0;display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}
-.tools li{display:flex;align-items:center;gap:16px;padding:14px;border-radius:16px;background:var(--surface);border:1px solid var(--line);transition:background .2s}
-.tools li:hover{background:var(--surface-2)}
+.tools li{display:flex;align-items:center;gap:16px;padding:14px;border-radius:16px;background:var(--surface);border:1px solid var(--line);transition:background .25s,border-color .25s,transform .25s var(--ease,ease),box-shadow .25s}
 .tools i{flex:none;width:52px;height:52px;border-radius:14px;display:grid;place-items:center;background:var(--green-deep);color:var(--gold);font-size:1.5rem}
 .tools b{display:block;font-weight:700;line-height:1.3}
 .tools small{display:block;color:var(--muted);font-size:.88rem}
+/* Hover: skill tiles and education/award rows turn into a dark green box with light text */
+@media (hover:hover){
+  .tools li:hover{background:var(--green-deep);border-color:var(--green-deep);transform:translateY(-2px);box-shadow:0 14px 24px -14px rgba(10,74,38,.55)}
+  .tools li:hover b{color:var(--on-green)}
+  .tools li:hover small{color:var(--on-green-muted)}
+  .tools li:hover i{background:rgba(255,255,255,.12)}
+  .rows li:hover{background:var(--green-deep);border-bottom-color:transparent}
+  .rows li:hover strong{color:var(--on-green)}
+  .rows li:hover span{color:var(--on-green-muted)}
+  .rows li:hover time,.rows li:hover .when{color:var(--gold)}
+  .rows li:hover .cert{border-color:rgba(255,255,255,.6);color:var(--on-green)}
+  .rows li:hover .cert:hover{background:var(--gold);border-color:var(--gold);color:var(--ink)}
+}
+@media (prefers-reduced-motion:reduce){.tools li{transition:background .25s,border-color .25s}.tools li:hover{transform:none}}
 .familiar{margin:12px 0 0;padding:20px 22px;border-radius:16px;background:var(--surface);border:1px solid var(--line);color:var(--muted)}
 .familiar b{color:var(--text)}
 
@@ -336,7 +348,7 @@ footer a{color:var(--muted);display:inline-flex;align-items:center;min-height:44
         <a class="feature gold" href="#contact">
           <i class="ph ph-calendar-check ico" aria-hidden="true"></i>
           <span class="go" aria-hidden="true"><i class="ph ph-arrow-up-right"></i></span>
-          <span><small>OJT availability</small><strong>January 2027, 324 hours</strong></span>
+          <span><small>OJT availability</small><strong>Starting January 2027</strong></span>
         </a>
         <a class="feature green" href="#projects">
           <i class="ph ph-eye ico" aria-hidden="true"></i>
@@ -549,7 +561,7 @@ footer a{color:var(--muted);display:inline-flex;align-items:center;min-height:44
         <li><i class="ph ph-figma-logo" aria-hidden="true"></i><span><b>Figma</b><small>UI design</small></span></li>
         <li><i class="ph ph-palette" aria-hidden="true"></i><span><b>Adobe Suite and Canva</b><small>Graphic design and video editing</small></span></li>
       </ul>
-      <p class="familiar reveal"><b>Familiar with:</b> Machine learning fundamentals at a coursework level, from our Machine Learning course. I have also used Dart and Flutter, Node.js and Express, PHP, React, MySQL, MQTT and the ESP32 in team projects.</p>
+      <p class="familiar reveal"><b>Also used in projects:</b> Dart, Flutter, Node.js, Express, PHP, React, MySQL, MQTT, ESP32</p>
     </section>
 
     <!-- Awards -->
@@ -572,7 +584,7 @@ footer a{color:var(--muted);display:inline-flex;align-items:center;min-height:44
       <span class="deco disc gold" style="width:60px;top:10px;right:12%" aria-hidden="true"></span>
       <h2 class="big split h2" id="contact-h"><span class="ln"><span>Let's work</span></span> <span class="ln dim"><span>together</span></span></h2>
       <div class="contact-card reveal">
-        <p>I'm looking for an OJT practicum starting January 2027, with 324 hours required. You can reach me by email.</p>
+        <p>I'm looking for an OJT practicum starting January 2027. You can reach me by email.</p>
         <a class="email" href="mailto:allainjames.ybanez.23@usjr.edu.ph">allainjames.ybanez.23@usjr.edu.ph</a>
         <div class="btns">
           <button class="btn primary" type="button" data-copy="allainjames.ybanez.23@usjr.edu.ph"><i class="ph ph-copy" aria-hidden="true"></i><span>Copy email</span></button>
